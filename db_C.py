@@ -11,7 +11,7 @@ con = mysql.connector.connect(
 
 cursor = con.cursor(dictionary=True)
 
-cursor.excute("""
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS users(
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100),
@@ -34,4 +34,5 @@ CREATE TABLE IF NOT EXISTS files(
 
 con.commit()
 
-print("Table Created successfully..")
+
+
