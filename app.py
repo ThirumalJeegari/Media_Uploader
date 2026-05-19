@@ -53,7 +53,7 @@ with signUp:
 with login:
     st.subheader("Login")
     with st.form("Login_Form"):
-        name = st.text_input("Name")
+        email = st.text_input("Email")
         password = st.text_input("Password",type="password")
         Login_btt =st.form_submit_button("Login")
 
