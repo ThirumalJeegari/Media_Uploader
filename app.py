@@ -19,16 +19,33 @@ with signUp:
         Signup_btt=st.form_submit_button("Sign-Up")
 
         if Signup_btt:
-            query = """
+            check_query = """
             SELECT * FROM users
-            WHERE email=%s AND password=%s
+            WHERE email=%s
             """
 
-            values = (email, password)
-
-            cursor.execute(query, values)
+            cursor.execute(check_query, (email,))
 
             user = cursor.fetchone()
+
+
+            if user:
+                st.error("Email already exists")
+
+            else:
+
+                insert_query = """
+                INSERT INTO users(name, email, password)
+                VALUES(%s, %s, %s)
+                """
+
+                values = (name, email, password)
+
+                cursor.execute(insert_query, values)
+
+                con.commit()
+
+                st.success("Account Created Successfully")
 
 
 
@@ -42,16 +59,22 @@ with login:
 
         if Login_btt:
 
-            query = """
-                INSERT INTO users(name, email, password)
-                VALUES(%s, %s, %s)
+            login_query = """
+            SELECT * FROM users
+            WHERE email=%s AND password=%s
             """
 
-            values = (name, email, password)
+            values = (email, password)
 
-            cursor.execute(query, values)
+            cursor.execute(login_query, values)
 
-            con.commit()
+            user = cursor.fetchone()
+
+            if user:
+                st.success(f"Welcome {user['name']}")
+
+            else:
+                st.error("Invalid Email or Password")
 
         
 
