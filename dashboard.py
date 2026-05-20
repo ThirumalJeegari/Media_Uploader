@@ -87,14 +87,7 @@ def dashboard():
                     st.audio(row["file_url"])
 
                 elif "pdf" in row["file_type"]:
-                    st.markdown(f"[📄 Open PDF]({row['file_url']})")
-
-                    st.markdown(
-                        f"""
-                        <iframe src="{row['file_url']}" width="700" height="900"></iframe>
-                        """,
-                        unsafe_allow_html=True
-                    )
+                    st.write("Uploaded PDF file")
 
                 else:
                     st.markdown(f"[Open File]({row['file_url']})")
