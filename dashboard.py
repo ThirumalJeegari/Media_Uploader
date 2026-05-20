@@ -32,7 +32,7 @@ def dashboard():
             elif "audio" in uploadedFile.type:
                 st.audio(uploadedFile)
             elif "pdf" in uploadedFile.type:
-                st.write("PDF file uploaded")
+                st.link_button("Open PDF", url)
 
             if st.button("Upload File to Cloudinary"):
                 uploaded_cloudinary = cloudinary.uploader.upload(uploadedFile,resource_type="auto")
@@ -87,8 +87,7 @@ def dashboard():
                     st.audio(row["file_url"])
 
                 elif "pdf" in row["file_type"]:
-                    st.write("PDF Uploaded")
-                    st.link_button("Open PDF", url)
+                    st.write("PDF file")
 
                 else:
                     st.markdown(f"[Open File]({row['file_url']})")
