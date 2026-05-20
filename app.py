@@ -1,5 +1,6 @@
 import streamlit as st
 from db_C import cursor,con
+from dashboard import dashboard
 
 st.title("Media Platform")
 
@@ -14,7 +15,7 @@ def signUp():
         Signup_btt=st.form_submit_button("Sign-Up")
 
         if Signup_btt:
-            query = "insert into table if not exisits users(name,email,password) values('%s','%s','%s')"
+            query = "insert into users(name,email,password) values(%s,%s,%s)"
             values = (name,email,password)
             cursor.execute(query,values)
             con.commit()
@@ -36,18 +37,22 @@ def login():
             cursor.execute(query,values)
 
             logined_user = cursor.fetchone()
-            st.session_state.user=logined_user
-            st.success("Login Successfully")
-            st.rerun()
+            
+            if logined_user:
+                st.session_state.user=logined_user
+                st.success("Login Successfully")
+                st.rerun()
+            else:
+                st.error("Invalid Email or Password")
 
 
 if st.session_state.user == None:       #if session is None then it should display the signup and login tabs
-    login,signUp = st.tabs(
+    login_tab,signUp_tab = st.tabs(
     ["Login","SignUp"]    
     )
-    with signUp:
+    with signUp_tab:
         signUp()
-    with login:
+    with login_tab:
         login()
 
 else:                         #if not it should display the dashboard
