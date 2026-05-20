@@ -87,14 +87,8 @@ def dashboard():
                     st.audio(row["file_url"])
 
                 elif "pdf" in row["file_type"]:
-                    st.markdown(f"📄 {row['file_name']}")
-                    st.download_button(
-                        label="Download PDF",
-                        data=None,
-                        file_name=row["file_name"],
-                        mime="application/pdf"
-                    )
-                    
+                    st.link_button("Open PDF", row["file_url"])
+
                 else:
                     st.markdown(f"[Open File]({row['file_url']})")
 
