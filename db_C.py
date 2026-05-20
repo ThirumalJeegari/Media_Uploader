@@ -1,13 +1,16 @@
 import mysql.connector
 import streamlit as st
 
+
 con=mysql.connector.connect(
     host= st.secrets["host"],
     database=st.secrets["database"],
     port=st.secrets["port"],
     user=st.secrets["user"],
-    password=st.secrets["password"]
+    password=st.secrets["password"],
+    ssl_disabled=False
 )
+
 
 cursor = con.cursor(dictionary=True)
 
@@ -33,6 +36,5 @@ CREATE TABLE IF NOT EXISTS files(
 """)
 
 con.commit()
-
 
 

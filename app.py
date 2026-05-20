@@ -5,6 +5,10 @@ from dashboard import dashboard
 st.title("Media Platform")
 
 
+# Initialize session state before accessing it
+if "user" not in st.session_state:
+    st.session_state.user = None
+
 # If user click on Sign-Up Button
 def signUp():
     st.subheader("Sign-Up")
@@ -44,6 +48,7 @@ def login():
                 st.rerun()
             else:
                 st.error("Invalid Email or Password")
+
 
 
 if st.session_state.user == None:       #if session is None then it should display the signup and login tabs
