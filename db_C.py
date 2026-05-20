@@ -7,6 +7,7 @@ con = mysql.connector.connect(
     password = st.secrets["password"],
     database = st.secrets["database"],
     port = st.secrets["port"],
+    auth_plugin="mysql_native_password",
     ssl_disabled=False
 )
 
