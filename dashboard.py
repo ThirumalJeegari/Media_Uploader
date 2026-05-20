@@ -12,8 +12,8 @@ cloudinary.config(
 
 st.title("Media Platform")
 
-if "user" not in st.session_state:
-    st.session_state.user = None
+# if "user" not in st.session_state:
+#     st.session_state.user = None
 
 
 def dashboard():
