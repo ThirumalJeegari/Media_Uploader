@@ -2,11 +2,11 @@ import mysql.connector
 import streamlit as st
 
 con = mysql.connector.connect(
-    host = st.secrets["host"],
-    user = st.secrets["user"],
-    password = st.secrets["password"],
-    database = st.secrets["database"],
-    port = st.secrets["port"],
+    host=st.secrets["host"],
+    user=st.secrets["user"],
+    password=st.secrets["password"],
+    database=st.secrets["database"],
+    port=st.secrets["port"],
     auth_plugin="mysql_native_password"
 )
 
