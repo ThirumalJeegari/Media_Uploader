@@ -2,6 +2,7 @@ import streamlit as st
 import cloudinary
 import cloudinary.uploader
 from db_C import cursor,con
+import pandas as pd
 
 
 cloudinary.config(
@@ -34,12 +35,28 @@ def dashboard():
             if st.button("Upload File to Cloudinary"):
                 uploaded_cloudinary = cloudinary.uploader.upload(uploadedFile,resource_type="auto")
                 url=uploaded_cloudinary["secure_url"]
+
+                # SAVE TO DATABASE (IMPORTANT)
+                cursor.execute("""
+                    INSERT INTO files(user_id, file_name, file_type, file_url)
+                    VALUES(%s,%s,%s,%s)
+                """, (
+                    st.session_state.user["id"],
+                    uploadedFile.name,
+                    uploadedFile.type,
+                    url
+                ))
+
+                con.commit()
+
+
+
                 st.write("Uploaded URL :",url)
                 st.success("File Uploaded to Cloudinary")
 
     else:
         st.subheader("View Files")
-        import pandas as pd
+        
 
         cursor.execute("""
         SELECT users.name, files.file_name, files.file_type, files.file_url, files.upload_date
