@@ -27,10 +27,12 @@ def dashboard():
 
             if "image" in uploadedFile.type:
                 st.image(uploadedFile)
-            if "video" in uploadedFile.type:
+            elif "video" in uploadedFile.type:
                 st.video(uploadedFile)
-            if "audio" in uploadedFile.type:
+            elif "audio" in uploadedFile.type:
                 st.audio(uploadedFile)
+            elif "pdf" in row["file_type"]:
+                st.audio(row["file_url"])
 
             if st.button("Upload File to Cloudinary"):
                 uploaded_cloudinary = cloudinary.uploader.upload(uploadedFile,resource_type="auto")
@@ -82,6 +84,9 @@ def dashboard():
                     st.video(row["file_url"])
 
                 elif "audio" in row["file_type"]:
+                    st.audio(row["file_url"])
+
+                elif "pdf" in row["file_type"]:
                     st.audio(row["file_url"])
 
                 else:
