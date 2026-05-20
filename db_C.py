@@ -1,13 +1,12 @@
 import mysql.connector
 import streamlit as st
 
-con = mysql.connector.connect(
-    host=st.secrets["host"],
-    user=st.secrets["user"],
-    password=st.secrets["password"],
+con=mysql.connector.connect(
+    host= st.secrets["host"],
     database=st.secrets["database"],
     port=st.secrets["port"],
-    auth_plugin="mysql_native_password"
+    user=st.secrets["user"],
+    password=st.secrets["password"]
 )
 
 cursor = con.cursor(dictionary=True)
