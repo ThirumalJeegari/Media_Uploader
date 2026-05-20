@@ -87,8 +87,6 @@ def dashboard():
                     st.audio(row["file_url"])
 
                 elif "pdf" in row["file_type"]:
-                    st.markdown(f"📄 {row['file_name']}")
-
                     st.markdown(
                         f'<a href="{row["file_url"]}" target="_blank">Open PDF</a>',
                         unsafe_allow_html=True
