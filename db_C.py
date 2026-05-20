@@ -7,7 +7,6 @@ con = mysql.connector.connect(
     password = st.secrets["password"],
     database = st.secrets["database"],
     port = st.secrets["port"],
-    ssl_disabled=False
 )
 
 cursor = con.cursor(dictionary=True)
