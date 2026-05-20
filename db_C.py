@@ -6,8 +6,8 @@ con = mysql.connector.connect(
     user = st.secrets["user"],
     password = st.secrets["password"],
     database = st.secrets["database"],
-    port = st.secrets["port"]
-    # auth_plugin="mysql_native_password"
+    port = st.secrets["port"],
+    auth_plugin="mysql_native_password"
 )
 
 cursor = con.cursor(dictionary=True)
