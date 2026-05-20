@@ -87,7 +87,8 @@ def dashboard():
                     st.audio(row["file_url"])
 
                 elif "pdf" in row["file_type"]:
-                    st.write("PDF file")
+                    st.write("PDF Uploaded")
+                    st.link_button("Open PDF", url)
 
                 else:
                     st.markdown(f"[Open File]({row['file_url']})")
